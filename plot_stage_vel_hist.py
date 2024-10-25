@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import pyhecdss
 from vtools.data.vtime import hours
 from vtools.functions.filter import cosine_lanczos
+import altair as alt
 
 
 # os.chdir(r'\\cnrastore-bdo\Delta_Mod\Share\sophie\ActiveProjects\SDG\Velocity_study\DSM2_mss_historical')
@@ -217,7 +218,7 @@ avg_nb_hours_perday_vel_below = nb_hours_perday_vel_below.mean().round(1)  # hou
 # ok that seems to give results that make sense. red dot: number of consecutive hours above 8ft/s
 # plt.figure()
 # plt.plot(vel.GLC,'k')
-# plt.plot(nb_hours_vel_above,'r*')
+# plt.plot(nb_hours_perday_vel_above,'r*')
 
 
 # flag this for later. Time when gates are in operation =1
@@ -402,7 +403,24 @@ for j, station in enumerate(thelist): # I suck at this, one day i'll get an hand
     current_directory = os.getcwd()
     if save_fig:
         plt.savefig(os.path.join(current_directory,fig_folder,fig_name%(station)), dpi=300)   
-  
+
+# time = pd.date_range(start='2024-01-01', periods=100, freq='H')
+# velocity = np.sin(np.linspace(0, 10, 100)) + np.random.normal(0, 0.1, 100) + 1.5
+# gate_status = np.random.choice([0, 1], size=100)
+
+# # Prepare the data for Altair
+# df = pd.DataFrame({
+#     'Time': time,
+#     'Velocity': velocity,
+#     'Gate_Status': gate_status
+# })
+# print(df)
+# # Base chart for the velocity (Line plot)
+# chart = alt.Chart(df).mark_line(color='blue').encode(
+#     x='Time:T',
+#     y='Velocity:Q'
+# )
+
 
 #%%
 
